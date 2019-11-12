@@ -3,7 +3,7 @@
 $dbHost     = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName     = "codexworld";
+$dbName     = "URL_Service";
 
 // Create database connection
 try{

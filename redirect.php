@@ -1,6 +1,5 @@
 <?php
 
-
 // Include database configuration file
 require_once 'dbConfig.php';
 
