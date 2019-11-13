@@ -76,6 +76,8 @@ session_start();
                 <h1>Shortening and Redirection Service</h1>
 
                 <input type="text" value="<?php echo $_SESSION["newurl"]; ?>" id="myInput">
+                <br>
+                <br>
                 <button onclick="myFunction()">Copy text</button>
                 <br>
             </section>

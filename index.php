@@ -35,8 +35,13 @@ session_start();
                 border-bottom-right-radius:5;
                 border-top-right-radius:5;
                 box-sizing:border-box}
+
+            #form_url input[type=submit], button{height:56px;padding:10px 16px;font:bold 17px lato,arial;color:#fff;background-color:#2c87c5;text-align:center;vertical-align:middle;cursor:pointer;white-space:nowrap;border:0;border-radius:3px;}
+
+                 
             
-            #form_url input[type=submit]{height:56px;padding:10px 16px;font:bold 17px lato,arial;color:#fff;background-color:#2c87c5;text-align:center;vertical-align:middle;cursor:pointer;white-space:nowrap;border:0;border-radius:3px;}
+            
+
         </style>
        
     <div class="header">
@@ -54,12 +59,17 @@ session_start();
                     <br>
                     <br>
                     <input type="text" name="description" placeholder="Enter the description here" required>
-                    <div id="formbutton">
+                    <div>
                         <br>
                         <input type="submit" value="Shorten URL">
                     </div>
                 </div>
             </form>
+            <br>
+        <div id="form_url">
+             <button onclick="window.location.href = 'allurls.php';">All URLs</button>
+            </div>
+            
             <br>
    
         </section>

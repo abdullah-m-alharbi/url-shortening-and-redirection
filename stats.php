@@ -111,34 +111,30 @@ $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
                 if (mysqli_connect_errno()) {
                     echo "Failed to connect to MySQL: " . mysqli_connect_error();
                 }
-                $query = "SELECT * FROM urls";
+                $query = "SELECT * FROM records WHERE id=".$_POST['id'];
                 $result = $conn->query($query);
-
+                
+                $query2 = "SELECT * FROM urls WHERE id=".$_POST['id'];
+                $result2 = $conn->query($query2);
+                
+                $row2 = mysqli_fetch_array($result2);
+               echo "<h2>URL description: ".$row2['description']."<br>Long URL: <a href='".$row2['long_url']."'>".$row2['long_url']."</a><br>Short URL: <a href='http://localhost/url-service/".$row2['short_url']."'>".$row2['short_url']."</a></h2>";
+                
                 echo "<table id='customers' border='1'>
 <tr>
 <th>ID</th>
-<th>Description</th>
-<th>Long URL</th>
-<th>Short URL</th>
-<th>Hits</th>
-<th>Created Time</th>
-<th>Stats</th>
+<th>Country</th>
+<th>City</th>
+<th>Created</th>
+
 </tr>";
+                $x = 1;
                 while ($row = mysqli_fetch_array($result)) {
                     echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['description'] . "</td>";
-                    echo "<td>" . $row['long_url'] . "</td>";
-                    echo "<td>" . $_SESSION['prefix'] . $row['short_url'] . "</td>";
-                    echo "<td>" . $row['hits'] . "</td>";
+                    echo "<td>" . ($x++) . "</td>";
+                    echo "<td>" . $row['country'] . "</td>";
+                    echo "<td>" . $row['city'] . "</td>";
                     echo "<td>" . $row['created'] . "</td>";
-                    echo "<td> <form action='stats.php' method='post'>
-                <div id='form_url'>
-                        <button type='submit' name='id' value=".$row['id'].">Stats</button>
-                    </div>
-            </form> </td>";
-
-
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -153,4 +149,3 @@ $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
         </section>
     </body>
 </html>
-

@@ -1,0 +1,19 @@
+CREATE TABLE `urls` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `long_url` varchar(255) NOT NULL,
+ `short_url` varchar(10) NOT NULL,
+ `description` varchar(255) NOT NULL,
+ `hits` int(11) NOT NULL,
+ `created` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `records` (
+ `record_id` int(11) NOT NULL AUTO_INCREMENT,
+ `country` varchar(255) NOT NULL,
+ `city` varchar(255) NOT NULL,
+ `created` datetime NOT NULL,
+ `id` int(11),
+ PRIMARY KEY (`record_id`),
+ FOREIGN KEY (`id`) REFERENCES `urls`(`id`)
+);
