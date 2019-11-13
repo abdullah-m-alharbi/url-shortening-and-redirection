@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
  * Class to create short URLs and decode shortened URLs
  * 

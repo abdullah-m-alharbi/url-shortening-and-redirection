@@ -80,6 +80,10 @@ session_start();
                 <br>
                 <button onclick="myFunction()">Copy text</button>
                 <br>
+                <br>
+            <div id="form_url">
+             <button onclick="window.location.href = 'allurls.php';">All URLs</button>
+            </div>
             </section>
 
         </div>
