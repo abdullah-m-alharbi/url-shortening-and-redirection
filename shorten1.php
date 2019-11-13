@@ -18,7 +18,7 @@ $description = $_POST['description'];
 // Prefix of the short URL 
 $shortURL_Prefix = 'localhost/url-service/'; // with URL rewrite
 //$shortURL_Prefix = 'https://xyz.com/?c='; // without URL rewrite
-
+$_SESSION['prefix'] = $shortURL_Prefix;
 try {
     // Get short code of the URL
     $shortCode = $shortener->urlToShortCode($longURL, $description);

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Class to create short URLs and decode shortened URLs
  * 
@@ -157,14 +157,34 @@ class Shortener {
         $stmt->execute($params);
         
         // getting location from IP
-        $myPublicIP = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com")); //public ip on a local server (XAMPP)
+//------------------------------------------------------------------------------------------------
+// USE THIS SNIPPENT WHEN TESTING AS IT WILL GET YOUR IP ADDRESS.
+        
+        $myPublicIP = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com")); //public ip on a local server (XAMPP)            
         $details = json_decode(file_get_contents("http://ipinfo.io/{$myPublicIP}/json"));
-       
+//        var_dump($details);
+//------------------------------------------------------------------------------------------------
+        
+//------------------------------------------------------------------------------------------------
+// USE THIS SNIPPENT WHEN DEPLOYING. THE SNIPPET BELOW WILL GET THE IP ADDRESS OF WEBSITE VISITORS.
+// 
+//        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+//            //ip from share internet
+//            $ip = $_SERVER['HTTP_CLIENT_IP'];
+//        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+//            //ip pass from proxy
+//            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+//        } else {
+//            $ip = $_SERVER['REMOTE_ADDR'];
+//        }
+//        $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+//        var_dump($details);
+//------------------------------------------------------------------------------------------------
         $customerCity = $details->city;
         $customerCountry = $details->country;
         
         //inserting into records
-        $query = "INSERT INTO records (country, city, created, id) values (:country, :city, :created, :id)";
+        $query = "INSERT INTO records (country, city, created, id) VALUES (:country, :city, :created, :id)";
         $stmt = $this->pdo->prepare($query);
         $params = array(
             "country" => $customerCountry,
@@ -174,5 +194,4 @@ class Shortener {
         );
         $stmt->execute($params);
     }
-
 }
